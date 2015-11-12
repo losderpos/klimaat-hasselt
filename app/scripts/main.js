@@ -7,6 +7,8 @@ $('document').ready(function () {
     var myDropzone = new Dropzone("#js-photobooth", {});
     var photobooth = $('.photobooth');
     var photoboothPos = photobooth.offset().top;
+    var extension = 'jpeg';
+    var re = /(?:\.([^.]+))?$/;
 
 
     Webcam.set({
@@ -22,7 +24,9 @@ $('document').ready(function () {
 
         image_format: 'jpeg',
         jpeg_quality: 90,
-        fps: 45
+        force_flash: false,
+        fps: 45,
+        flip_horiz: true
     });
 
 
@@ -35,7 +39,44 @@ $('document').ready(function () {
     // Functions
     // =======================
 
+    function loadSelfies(){
+        $.ajax({
+            url: "//hasselt.dev/php/selfies.php",
+            dataType: "json",
+            success: function (data) {
+
+                $('.grid').empty();
+
+                $.each(data, function(i,filename) {
+
+                    $('.grid').prepend('<div class="grid-item"><img src="'+ filename +'" alt="" class="grid-item__img"> </div>');
+                });
+
+                $('.grid-item img').error(function(){
+                    $(this).parent().remove();
+                });
+
+                $('.grid-item').each(function(i){
+                    $(this).delay(100 * i).animate({
+                        opacity: 1
+                    });
+                });
+            }
+        });
+    }
+
+    loadSelfies();
+
     function cropImage(file){
+
+        /*
+        extension = re.exec(file['name']);
+        extension = extension[1].toLowerCase();
+
+        */
+
+        extension = 'png';
+
 
         var reader = new FileReader();
         reader.onloadend = function() {
@@ -76,15 +117,20 @@ $('document').ready(function () {
     }
 
 
-    function saveImage(file){
+    function saveImage(){
+
+        var image = $('.uploader__result img').attr('src');
 
         $.ajax({
+            url: "//hasselt.dev/php/upload.php",
             type: "POST",
-            url: "index.php?action=saveNewPost",
-            data: {text: text, img: encodeURIComponent(base64img)},
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            success: function(){
-                //...
+            data: {
+                base64data : image,
+                file_extension : extension
+            },
+            success: function(data){
+                $('.uploader').slideUp();
+                loadSelfies();
             }
         });
 
@@ -107,13 +153,14 @@ $('document').ready(function () {
 
 
 
+        Webcam.attach( '.uploader__camera' );
+
         return false;
     });
 
     $('.js-webcam-snap-btn').click(function(){
 
         Webcam.snap( function(data_uri) {
-            console.log(data_uri);
             $('.uploader__result img').attr('src', data_uri);
         } );
 
@@ -147,6 +194,9 @@ $('document').ready(function () {
     // Save webcam image
     $('.js-webcam-save-btn').click(function(){
 
+        saveImage();
+
+        return false;
     });
 
 
@@ -221,7 +271,7 @@ $('document').ready(function () {
     // Shizzle
     // =======================
 
-    Webcam.attach( '.uploader__camera' );
+
 
 
 

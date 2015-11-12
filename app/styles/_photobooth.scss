@@ -1,0 +1,128 @@
+
+
+.photobooth{
+  width: 100%;
+  background: $color-primary;
+  left: $thumb-width;
+  top: $thumb-width;
+  z-index: 9001;
+  box-sizing: border-box;
+
+  &.dragenter{
+    background: lighten($color-primary, 10%);
+  }
+
+
+  video{
+    position: absolute;
+    top:0;
+    height: 320px;
+    width: 320px;
+    left: -80px;
+  }
+
+
+
+}
+
+#result-canvas{
+  display: none;
+  height: 320px;
+  width: 320px;
+}
+
+
+#js-photobooth{
+  height:100%;
+}
+
+
+.js-upload-input{
+  display: none;
+}
+
+.photobooth__title{
+  margin-top: 0;
+}
+
+.photobooth__text{
+  margin-bottom: 40px;
+}
+
+.photobooth__inner{
+  text-align: center;
+  overflow: auto;
+
+  padding: 10px;
+}
+
+.photobooth__header{
+  position: absolute;
+  text-align: center;
+  padding: 40px;
+}
+
+.uploader{
+  box-sizing: border-box;
+  display: none;
+  text-align: center;
+  padding: 30px;
+
+
+  position: absolute;
+  z-index: 9001;
+  width: 100%;
+  top: 84px;
+  background: $color-primary;
+
+  h3{
+    font-size: 3em;
+    margin: 0 0 10px;
+    padding: 0;
+  }
+}
+
+.uploader--webcam{
+  position: relative;
+}
+
+.uploader__buttons{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.uploader__result{
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+
+  img{
+    width: auto;
+    height: auto;
+  }
+}
+
+.uploader__camera{
+  position: relative;
+}
+
+.uploader__camera, .uploader__result{
+  margin: 20px auto 10px;
+  text-align: center;
+  display: inline-flex;
+  border: 3px solid black;
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+  background: black;
+}
+
+.dz-preview{
+  display: none;
+}
+
+@media (max-width: 1024px){
+  .screen-md{
+    display: none;
+  }
+}

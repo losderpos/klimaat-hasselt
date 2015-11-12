@@ -1,0 +1,21 @@
+.grid{
+  min-height: 100vh;
+}
+
+.grid-item{
+  box-sizing: border-box;
+  width: $thumb-width;
+  padding-bottom: $thumb-width;
+  float:left;
+  margin: 0;
+  position: relative;
+
+}
+
+.grid-item__img{
+  position: absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+}

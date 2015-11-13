@@ -75,7 +75,6 @@ $('document').ready(function () {
 
         */
 
-        alert(orientation);
 
         extension = 'png';
 

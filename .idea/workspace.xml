@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="001b4d2b-7549-4c23-ad37-285cbeb12f02" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/5645077c5d3f8.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/564508a09d817.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450b09f0b71.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450c9ef0f70.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450cc84315d.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450cd6841ff.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450d021608c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450d43144bd.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450d9ed8a12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450dbcdfce3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450e27dbb25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450e3ce6ae0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450f27b3525.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450f477e92a.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450f64b5a80.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/56450f718928c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/5645107ca8a8b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/564510cfab9eb.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/564510d75bf23.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/564510de7c054.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/uploads/564514a621c2e.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/main.js" afterPath="$PROJECT_DIR$/app/scripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/_buttons.scss" afterPath="$PROJECT_DIR$/app/styles/_buttons.scss" />
     </list>
     <ignored path="hasselt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,10 +49,10 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39565554">
-              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5120248">
+              <caret line="129" column="18" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
               <folding>
-                <marker date="1447426637000" expanded="true" signature="1168:1224" placeholder="..." />
+                <marker date="1447427868000" expanded="true" signature="1168:1224" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -564,7 +540,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="234" column="20" selection-start-line="234" selection-start-column="20" selection-end-line="234" selection-end-column="20" />
           <folding>
-            <marker date="1447426637000" expanded="true" signature="1168:1224" placeholder="..." />
+            <marker date="1447427868000" expanded="true" signature="1168:1224" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -655,7 +631,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
           <folding>
-            <marker date="1447426637000" expanded="true" signature="1168:1224" placeholder="..." />
+            <marker date="1447427868000" expanded="true" signature="1168:1224" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -719,7 +695,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1447426637000" expanded="true" signature="1168:1224" placeholder="..." />
+            <marker date="1447427868000" expanded="true" signature="1168:1224" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -866,10 +842,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39565554">
-          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5120248">
+          <caret line="129" column="18" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
           <folding>
-            <marker date="1447426637000" expanded="true" signature="1168:1224" placeholder="..." />
+            <marker date="1447427868000" expanded="true" signature="1168:1224" placeholder="..." />
           </folding>
         </state>
       </provider>

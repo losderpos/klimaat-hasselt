@@ -97,12 +97,18 @@ $('document').ready(function () {
 
                 SmartCrop.crop(img, {width: 320, height: 320}, function(result) {
 
+
+
                     ctx.drawImage(img,
                         result.topCrop.x, result.topCrop.y,
                         result.topCrop.width, result.topCrop.height,
                         0, 0,
                         320,320
                     );
+
+
+                    var dataURL = canvas.get(0).toDataURL();
+
 
                     switch(orientation){
                         case 2:
@@ -142,6 +148,7 @@ $('document').ready(function () {
                             ctx.translate(-canvas.width, 0);
                             break;
                     }
+
 
                     $('.uploader__result img').attr('src', dataURL);
 

@@ -2,12 +2,11 @@
 .btn{
   display: inline-block;
   color: black;
-  width: 35%;
   // background: $color-secondary;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   text-decoration: none;
-  padding: 8px 3px;
+  padding: 8px 10px;
   text-transform: uppercase;
 
   font-size: 1.1rem;
@@ -30,6 +29,9 @@
   width: 25%;
 }
 
+.btn-big{
+  padding: 12px 5px;
+}
 
 
 .close{

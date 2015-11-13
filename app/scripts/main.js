@@ -67,13 +67,15 @@ $('document').ready(function () {
 
     loadSelfies();
 
-    function cropImage(file){
+    function cropImage(file, orientation){
 
         /*
         extension = re.exec(file['name']);
         extension = extension[1].toLowerCase();
 
         */
+
+        alert(orientation);
 
         extension = 'png';
 
@@ -85,8 +87,8 @@ $('document').ready(function () {
             var result = reader.result;
 
 
-            var myCanvas = $('#result-canvas');
-            var ctx = myCanvas.get(0).getContext('2d');
+            var canvas = $('#result-canvas');
+            var ctx = canvas.get(0).getContext('2d');
 
             img.src = result;
 
@@ -95,7 +97,6 @@ $('document').ready(function () {
 
                 SmartCrop.crop(img, {width: 320, height: 320}, function(result) {
 
-
                     ctx.drawImage(img,
                         result.topCrop.x, result.topCrop.y,
                         result.topCrop.width, result.topCrop.height,
@@ -103,7 +104,44 @@ $('document').ready(function () {
                         320,320
                     );
 
-                    var dataURL = myCanvas.get(0).toDataURL();
+                    switch(orientation){
+                        case 2:
+                            // horizontal flip
+                            ctx.translate(canvas.width, 0);
+                            ctx.scale(-1, 1);
+                            break;
+                        case 3:
+                            // 180° rotate left
+                            ctx.translate(canvas.width, canvas.height);
+                            ctx.rotate(Math.PI);
+                            break;
+                        case 4:
+                            // vertical flip
+                            ctx.translate(0, canvas.height);
+                            ctx.scale(1, -1);
+                            break;
+                        case 5:
+                            // vertical flip + 90 rotate right
+                            ctx.rotate(0.5 * Math.PI);
+                            ctx.scale(1, -1);
+                            break;
+                        case 6:
+                            // 90° rotate right
+                            ctx.rotate(0.5 * Math.PI);
+                            ctx.translate(0, -canvas.height);
+                            break;
+                        case 7:
+                            // horizontal flip + 90 rotate right
+                            ctx.rotate(0.5 * Math.PI);
+                            ctx.translate(canvas.width, -canvas.height);
+                            ctx.scale(-1, 1);
+                            break;
+                        case 8:
+                            // 90° rotate left
+                            ctx.rotate(-0.5 * Math.PI);
+                            ctx.translate(-canvas.width, 0);
+                            break;
+                    }
 
                     $('.uploader__result img').attr('src', dataURL);
 
@@ -212,12 +250,19 @@ $('document').ready(function () {
 
     $(".js-upload-input").on('change', function(e) {
 
-        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
 
-            var file = e.originalEvent.srcElement.files[i];
+        EXIF.getData(e.target.files[0], function() {
+            var orientation = EXIF.getTag(this, "Orientation");
 
-            cropImage(file);
-        }
+            for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+                var file = e.originalEvent.srcElement.files[i];
+
+                cropImage(file, orientation);
+            }
+        });
+
+
     });
 
     $(window).on('scroll', function(){

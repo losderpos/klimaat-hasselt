@@ -10,6 +10,8 @@ $('document').ready(function () {
     var extension = 'jpeg';
     var re = /(?:\.([^.]+))?$/;
 
+    var host = window.location.origin;
+
 
     Webcam.set({
         width: 320,
@@ -39,6 +41,17 @@ $('document').ready(function () {
     // Functions
     // =======================
 
+    function dataURItoBlob(dataURI) {
+        var binary = atob(dataURI.split(',')[1]);
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    }
+
+
+
     function loadSelfies(){
         $.ajax({
             url: "//hasselt.dev/php/selfies.php",
@@ -48,8 +61,9 @@ $('document').ready(function () {
                 $('.grid').empty();
 
                 $.each(data, function(i,filename) {
+                    console.log(filename);
 
-                    $('.grid').prepend('<div class="grid-item"><img src="'+ filename +'" alt="" class="grid-item__img"> </div>');
+                    $('.grid').prepend('<div class="grid-item"><img src="'+ filename +'" alt="" class="grid-item__img"><div class="grid-item--options"><a href="#" class="btn btn-share" target="_blank">Delen</a><a href="'+ filename +'" class="btn btn-download">Downloaden</a></div></div>');
                 });
 
                 $('.grid-item img').error(function(){
@@ -59,6 +73,21 @@ $('document').ready(function () {
                 $('.grid-item').each(function(i){
                     $(this).delay(100 * i).animate({
                         opacity: 1
+                    });
+                });
+
+                $('.grid-item .btn-share').click(function(){
+                    var picture = $(this).find('img').attr('src');
+
+                    console.log(picture);
+
+                    FB.ui({
+                        method: 'feed',
+                        link: 'http://metuitstervenbedreigd.be/',
+                        caption: 'Upload je foto op deze website en wij voorzien hem van de gepaste slogan: “Ik ben met uitsterven bedreigd. Red het klimaat. Nu!” Een verzameling van deze foto’s wordt door ons meegenomen naar Parijs. Zo zien de ministers dat ook jij begaan bent met het klimaat! Hoe meer foto’s, hoe sterker de boodschap!',
+                        picture: picture
+                    }, function(response){
+                        console.log(response);
                     });
                 });
             }
@@ -83,6 +112,7 @@ $('document').ready(function () {
         reader.onloadend = function() {
 
             var img = new Image;
+            var banner = $('.header__img');
             var result = reader.result;
 
 
@@ -96,14 +126,14 @@ $('document').ready(function () {
 
                 SmartCrop.crop(img, {width: 320, height: 320}, function(result) {
 
-
-
                     ctx.drawImage(img,
                         result.topCrop.x, result.topCrop.y,
                         result.topCrop.width, result.topCrop.height,
                         0, 0,
                         320,320
                     );
+
+                    ctx.drawImage(banner[0], 0, 235, 320, 85);
 
 
                     var dataURL = canvas.get(0).toDataURL();
@@ -196,17 +226,23 @@ $('document').ready(function () {
         $('.uploader--webcam').slideDown();
 
 
+        $("html, body").animate({ scrollTop: photoboothPos });
+
 
         Webcam.attach( '.uploader__camera' );
 
         return false;
     });
 
-    $('.js-webcam-snap-btn').click(function(){
+    $('.js-webcam-snap-btn').click(function(e){
+
+        e.preventDefault();
 
         Webcam.snap( function(data_uri) {
-            $('.uploader__result img').attr('src', data_uri);
+
+            cropImage(dataURItoBlob(data_uri));
         } );
+
 
         $('.uploader--webcam').hide();
 
@@ -239,6 +275,14 @@ $('document').ready(function () {
     $('.js-webcam-save-btn').click(function(){
 
         saveImage();
+
+        return false;
+    });
+
+    // Info image
+    $('.js-info-btn').click(function(){
+
+        $('.header__text').slideToggle();
 
         return false;
     });

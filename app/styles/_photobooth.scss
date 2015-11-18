@@ -18,7 +18,7 @@
     top:0;
     height: 320px;
     width: 320px;
-    left: -80px;
+    left: 0px;
   }
 
 
@@ -72,7 +72,6 @@
   position: absolute;
   z-index: 9001;
   width: 100%;
-  top: 84px;
   background: $color-primary;
 
   h3{
@@ -110,17 +109,45 @@
   margin: 20px auto 10px;
   text-align: center;
   display: inline-flex;
-  border: 3px solid black;
   width: 320px;
   height: 320px;
   overflow: hidden;
   background: black;
+  border: 3px solid black;
 }
 
 .dz-preview{
   display: none;
 }
 
+.camera-wrap{
+
+  width: 320px;
+  height: 320px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 3px solid black;
+
+  .uploader__camera{
+    margin-top: 0;
+    border: none;
+    left: 0;
+    position: absolute;
+  }
+
+  video{
+    position: absolute;
+    top: 0;
+  }
+}
+.webcam__img{
+  position: absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  width: 320px;
+}
 @media (max-width: 1024px){
   .screen-md{
     display: none;

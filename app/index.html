@@ -28,15 +28,45 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 'your-app-id',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
     <div class="flash"></div>
 
     <header class="header">
 
-      <img src="../images/hasselt-klimaat-header.png" alt="">
-      <!--
-      <h1 class="header__title">This is the title</h1>
-      <p class="header__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto, dolor, enim facilis illo iure laboriosam laborum officia quis quisquam repellendus voluptatem! Ducimus earum fugiat libero, minus odit quam veniam.</p>
-      -->
+      <img src="../images/hasselt-klimaat-header.png" alt="" class="header__img">
+
+      <div class="header__text">
+        <p>De cruciale klimaattop in Parijs is het ideale moment om van je te laten horen en de wereldleiders aan te zetten tot actie! Daarom trekken we van Hasselt naar Parijs! Het doel? Een eerlijk akkoord afdwingen tussen alle landen, zodat ze hun broeikasgassen beperken.</p>
+
+        <p>Kan je er zelf niet bij zijn op 29 november? Dan geven we je toch de kans om je stem te laten horen in Parijs!</p>
+
+        <p>Upload je foto op deze website en wij voorzien hem van de gepaste slogan: “Ik ben met uitsterven bedreigd. Red het klimaat. Nu!” Een verzameling van deze foto’s wordt door ons meegenomen naar Parijs. Zo zien de ministers dat ook jij begaan bent met het klimaat! Hoe meer foto’s, hoe sterker de boodschap!</p>
+        <p>Is dit belangrijk voor Hasselaren? Ja! Hier alvast enkele redenen:
+          <ul>
+          <li>Red mensenlevens! Hogere temperaturen verhogen duidelijk sterftecijfers bij bejaarden en zwakkeren van gezondheid. Ook voor kinderen onder de 4 jaar is de impact van hitteperiodes enorm. Tijdens de hittegolf van 2003 vielen er in Europa maar liefst 70.000 slachtoffers.</li>
+          <li>Red medicijnen!  Maar liefst 40% van kankermedicijnen komt uit de natuur. “Sorry, uw medicijn is uitgestorven.” Is niet iets wat we binnen enkele jaren willen horen wanneer wij of mensen uit onze omgeving geconfronteerd worden met kanker.</li>
+          <li>Red de kinderen van nu! Het opgebruiken van fosiele brandstoffen zal er voor zorgen dat 77% van alle landen tegen 2100 veel armer zullen zijn dan nu. Wil jij dat je kinderen in een arme economie moeten leven? </li>
+          </ul>
+        </p>
+      </div>
     </header>
 
     <main class="main" role="main">
@@ -66,6 +96,7 @@
                 <a href="" class="btn js-webcam-btn">Neem een selfie met webcam</a>
               </span>
               <a href="" class="btn js-upload-btn">Upload jouw Selfie</a>
+              <a href="" class="btn js-info-btn btn-small">Meer informatie</a>
 
 
             </div>
@@ -90,7 +121,14 @@
               <a href="" class="js-webcam-snap-btn btn">Neem Selfie</a>
             </div>
 
-            <div class="uploader__camera" style="width:320px; height:320px;"></div>
+
+
+            <div class="camera-wrap">
+              <div class="uploader__camera" style="width:320px; height:320px;">
+              </div>
+              <img src="../images/hasselt-klimaat-header.png" alt="" class="webcam__img">
+            </div>
+
 
 
 
@@ -119,6 +157,11 @@
 
           <div class="grid-item">
             <img src="//lorempixel.com/400/400/people/3/" alt="" class="grid-item__img">
+            <a href="https://www.facebook.com/dialog/feed?
+  app_id=145634995501895
+  &display=popup&caption=An%20example%20caption 
+  &link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F
+  &redirect_uri=https://developers.facebook.com/tools/explorer" class="btn btn--share">Delen</a>
           </div>
 
           <div class="grid-item">

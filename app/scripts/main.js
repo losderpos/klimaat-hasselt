@@ -1,7 +1,11 @@
 $('document').ready(function () {
+
+
+
     // =======================
     // Variables
     // =======================
+
 
     var gridSize = $('.grid-item').outerHeight();
     var myDropzone = new Dropzone("#js-photobooth", {});
@@ -50,7 +54,16 @@ $('document').ready(function () {
         return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
     }
 
-
+    Image.prototype.rotate = function(angle) {
+        var c = document.createElement("canvas");
+        c.width = this.width;
+        c.height = this.height;
+        var ctx = c.getContext("2d");
+        ctx.rotate(angle);
+        var imgData = ctx.createImageData(this.width, this.height);
+        ctx.putImageData(imgData);
+        return new Image(imgData);
+    }
 
     function loadSelfies(){
         $.ajax({
@@ -119,40 +132,35 @@ $('document').ready(function () {
             var canvas = $('#result-canvas');
             var ctx = canvas.get(0).getContext('2d');
 
-            img.src = result;
 
+
+
+            img.src = result;
 
             img.onload = function(){
 
+
+
                 SmartCrop.crop(img, {width: 320, height: 320}, function(result) {
 
-                    ctx.drawImage(img,
-                        result.topCrop.x, result.topCrop.y,
-                        result.topCrop.width, result.topCrop.height,
-                        0, 0,
-                        320,320
-                    );
 
-                    ctx.drawImage(banner[0], 0, 235, 320, 85);
-
-
-                    var dataURL = canvas.get(0).toDataURL();
+                    ctx.save();
 
 
                     switch(orientation){
                         case 2:
                             // horizontal flip
-                            ctx.translate(canvas.width, 0);
+                            ctx.translate(320, 0);
                             ctx.scale(-1, 1);
                             break;
                         case 3:
                             // 180° rotate left
-                            ctx.translate(canvas.width, canvas.height);
+                            ctx.translate(320, 320);
                             ctx.rotate(Math.PI);
                             break;
                         case 4:
                             // vertical flip
-                            ctx.translate(0, canvas.height);
+                            ctx.translate(0, 320);
                             ctx.scale(1, -1);
                             break;
                         case 5:
@@ -163,20 +171,42 @@ $('document').ready(function () {
                         case 6:
                             // 90° rotate right
                             ctx.rotate(0.5 * Math.PI);
-                            ctx.translate(0, -canvas.height);
+                            ctx.translate(0, -320);
                             break;
                         case 7:
                             // horizontal flip + 90 rotate right
                             ctx.rotate(0.5 * Math.PI);
-                            ctx.translate(canvas.width, -canvas.height);
+                            ctx.translate(320, -320);
                             ctx.scale(-1, 1);
                             break;
                         case 8:
                             // 90° rotate left
                             ctx.rotate(-0.5 * Math.PI);
-                            ctx.translate(-canvas.width, 0);
+                            ctx.translate(-320, 0);
                             break;
                     }
+
+                    ctx.drawImage(img,
+                        result.topCrop.x, result.topCrop.y,
+                        result.topCrop.width, result.topCrop.height,
+                        0, 0, 320, 320
+                    );
+
+                    /*
+                    ctx.drawImage(img,
+                        - width / 2, -height/2,
+                        width, height);
+                     */
+
+                    ctx.restore();
+
+                    ctx.drawImage(banner[0], 0, 235, 320, 85);
+
+
+
+
+
+                    var dataURL = canvas.get(0).toDataURL();
 
 
                     $('.uploader__result img').attr('src', dataURL);
